@@ -1,38 +1,65 @@
-class Scripture
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Scripture
 {
-    List<Word> _words;
-    // TODO: Add scripture reference
+    private Reference _reference;
+    private List<Word> _words;
+    private Random _random;
 
-    public Scripture(string bookName, int chapter, int verse, string text)
+    public Scripture(Reference reference, string text)
     {
-        // Add scripture ref here. Use bookName, chapter, and verse to create scripture ref
-        _words = ConvertToWords(text);
-    }
+        _reference = reference;
+        _words = new List<Word>();
+        _random = new Random();
 
-    public Scripture(string bookName, int chapter, int startVerse, int endVerse, string text)
-    {
-        
-    }
+        string[] wordArray = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-    public void ShowScripture()
-    {
-        foreach(Word word in _words)
+        foreach (string word in wordArray)
         {
-            word.Display();
+            _words.Add(new Word(word));
         }
     }
-// ConvertToWords will convert the paragraph in "text" to list of words. This list is returned
-    private List<Word> ConvertToWords(string text)
-    {
-        List<Word> tempWords = new List<Word>();
 
-        string[] words = text.Split(' ');
-        foreach (string word in text.Split(' '))
+    public void HideRandomWords(int numberOfWords)
+    {
+        List<Word> visibleWords = _words
+            .Where(word => !word.IsHidden())
+            .ToList();
+
+        for (int i = 0; i < numberOfWords && visibleWords.Count > 0; i++)
         {
-            Word tempWord = new Word(word);
-            tempWords.Add(tempWord);
+            int randomIndex = _random.Next(visibleWords.Count);
+            Word wordToHide = visibleWords[randomIndex];
+
+            wordToHide.Hide();
+            visibleWords.RemoveAt(randomIndex);
         }
-        
-        return tempWords;
+    }
+
+    public bool IsCompletelyHidden()
+    {
+        foreach (Word word in _words)
+        {
+            if (!word.IsHidden())
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public string GetDisplayText()
+    {
+        List<string> displayedWords = new List<string>();
+
+        foreach (Word word in _words)
+        {
+            displayedWords.Add(word.GetDisplayText());
+        }
+
+        return $"{_reference.GetDisplayText()} {string.Join(" ", displayedWords)}";
     }
 }
