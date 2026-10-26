@@ -10,6 +10,6 @@ class Police : Person
 
     public void DisplayPoliceInformation()
     {
-        Console.WriteLine($"{_firstName} {_lastName} is a police officer with {(_weapons ?? "no")} weapons.");
+      
     }
 }
