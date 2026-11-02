@@ -1,13 +1,14 @@
-﻿class Program
+﻿class Doctor: Person
 {
-    static void Main()
+    private string _tools;
+
+    public Doctor (string firstName, string lastName, int age, double weight, string tools) : base(firstName, lastName, age, weight)
     {
-        Person myPerson = new Person("Bob", "Floyd", 56, 238);
+        _tools = tools;
+    }
 
-        myPerson.DisplayPersonInformation();
-
-        Police myPolice = new Police("Lance", "Bob", 34, 186, "Taser");
-        
-        myPolice.DisplayPoliceInformation();
+    public string GetDoctorInformation()
+    {
+        return $"Doctor Tools: {_tools}, {GetPersonInformation()},";
     }
 }
