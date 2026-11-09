@@ -1,18 +1,15 @@
-class Program
+class Doctor : Person
 {
-    static void Main()
+    private string _tools;
+
+    public Doctor(string firstName, string lastName, int age, double weight, string tools) : base(firstName, lastName, age, weight)
     {
-        Person myPerson = new Person("John", "Doe", 30, 238);
+        _tools = tools;
+    }
 
-        Console.WriteLine(myPerson.GetPersonInformation());
 
-        myPerson.DisplayPersonInformation();
-        Police myPolice = new Police("Jane", "Smith", 35, 123, "Detective");
-
-        // myPolice.DisplayPersonInformation();
-        Console.WriteLine(myPolice.GetPoliceInformation());
-
-        Doctor myDoctor = new Doctor("Emily", "Johnson", 40, 456, "Cardiologist");
-        Console.WriteLine(myDoctor.GetDoctorInformation());     
+    public override string GetPersonInformation()
+    {
+        return $"Doctor Tools: {_tools}{base.GetPersonInformation()}";
     }
 }
