@@ -8,12 +8,14 @@
         else if (person is Police p)
             Console.WriteLine(p.GetPoliceInformation());
         else
-            Console.WriteLine(person.GetPersonInformation());
+
+
+        Console.WriteLine(person.GetPersonInformation());
 
     }
     static void Main()
     {
-        Person myPerson = new Person("John", "Doe", 30, 180.5);
+        //Person myPerson = new Person("John", "Doe", 30, 180.5);
 
         // Console.WriteLine(myPerson.GetPersonInformation());
 
@@ -27,7 +29,7 @@
 
         List<Person> myPeople = new List<Person>();
 
-        myPeople.Add(myPerson);
+        //myPeople.Add(myPerson);
         myPeople.Add(myPolice);
         myPeople.Add(myDoctor); 
 

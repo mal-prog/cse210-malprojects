@@ -12,4 +12,9 @@ class Doctor : Person
     {
         return $"Doctor Tools: {_tools}{base.GetPersonInformation()}";
     }
+
+    public override double GetSalary()
+    {
+        return 120000.00; // Example salary for a doctor
+    }
 }
