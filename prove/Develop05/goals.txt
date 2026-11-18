@@ -1,0 +1,2 @@
+650
+ChecklistGoal:Temple|Attend the temple|50|500|3|3
